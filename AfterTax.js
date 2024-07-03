@@ -81,20 +81,34 @@ function AFTERTAX(salary, year, filing) {
       ])
     ],
   ])
+  // Set variables
   let taxes = 0;
   let bracket = 0;
-  let gross = salary;
+  let gross = salary; // So SALARY is not modified
+
+  // Calculate taxes
   while (gross > 0) {
+    // Simplify Variable Names; just for readability
     let tax_rate = tax_bracket.get(year).get(filing)[bracket][1];
     let bracket_cap = tax_bracket.get(year).get(filing)[bracket][0];
-    let salary_delta = bracket_cap;
+    let salary_delta = bracket_cap; // salary_delta defaults to bracket_cap
+
     if (bracket != 0) {
-      salary_delta = bracket_cap - tax_bracket.get(year).get(filing)[bracket-1][0];
+      if (bracket_cap == 0) {
+        // If the salary was in the highest bracket, use whatever is above the previous bracket cap
+        salary_delta = gross;
+      } else {
+        // Otherwise get the difference between the current bracket and the previous
+        salary_delta = bracket_cap - tax_bracket.get(year).get(filing)[bracket-1][0];
+      }
     }
+    // Calculate taxes owed
     if (gross - salary_delta > 0) {
+      // If the salary_delta is less than the gross remaining
       gross -= salary_delta;
       taxes += salary_delta * tax_rate;
     } else {
+      // If the gross_remaining is less than the salary_delta
       taxes += gross * tax_rate;
       gross = 0;
     }
