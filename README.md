@@ -1,6 +1,10 @@
 # sheets-functions
 Just a place to collect various custom sheets functions
 
+Want to use it?
+  - https://script.google.com/macros/library/d/1-jbQvrmr08JZLoDP8AZzx40BbUexFUBXcslXULvak7AmVfU8ssr0JaW3/1
+  - WARNING: Use at your own risk, not guaranteeing anything here.
+
 - `EmployeeStockPurchaseValuation.js`
   - [see](./EmployeeStockPurchaseValuation.js)
   - Estimate the returned value of stocks purchased through a companies Employee Stock Purchase Program
